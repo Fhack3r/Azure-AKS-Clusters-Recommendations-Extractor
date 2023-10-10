@@ -1,22 +1,24 @@
-# Azure-AKS-Pod-Recommendations-Extractor
+# Azure-AKS-Clusters-Recommendations-Extractor
 
 ## Overview
 
-The Azure AKS Pod Recommendations Extractor is a Python script designed to help you extract and manage recommendations for Azure Kubernetes Service (AKS) clusters. It interacts with the Azure CLI to gather data on AKS clusters, subscriptions, and their associated Azure policy recommendations. This tool simplifies the process of monitoring and managing the security and compliance of your AKS clusters by providing insights into their health and adherence to Azure policies.
+The Azure-AKS-Clusters-Recommendations-Extractor is a powerful tool designed to streamline the process of extracting recommendation data from Azure AKS (Azure Kubernetes Service) clusters. Azure AKS provides valuable insights and recommendations related to the security and health of your Kubernetes clusters. However, accessing and organizing this data can be challenging, especially when dealing with multiple clusters and subscriptions. This tool simplifies the process of monitoring and managing the security and compliance of your AKS clusters by providing insights into their health and adherence to Azure policies.
 
 ## Features
 
-- **Data Extraction**: Retrieve information on AKS clusters, subscriptions, and Azure policy recommendations from your Azure environment.
+- **Data Extraction**: Retrieve data on AKS clusters, subscriptions, and Azure policy recommendations from your Azure environment.
 
-- **Recommendation Tracking**: Keep track of Azure policy recommendations for each AKS cluster, including their health status (Healthy/Unhealthy).
+- **Recommendation Tracking**: Keep track of Azure pod recommendations for each AKS cluster, including their health status (Healthy/Unhealthy/N/A).
 
 - **CSV Export**: Export the extracted data to a CSV file for further analysis and reporting.
 
 - **Flexibility**: Filter and display information for specific clusters, subscriptions, or policy states, making it easy to focus on areas that require attention.
 
+- **Visibility**: Automatically handle naming conflicts and provide clear recommendations status (Healthy/Unhealthy/N/A) for each cluster.
+
 ## Prerequisites
 
-Before using the Azure AKS Pod Recommendations Extractor, ensure you have the following prerequisites:
+Before using the Azure AKS Clusters Recommendations Extractor, ensure you have the following prerequisites:
 
 - **Azure CLI**: You need to have the Azure CLI installed and authenticated to interact with your Azure environment.
 
@@ -33,34 +35,52 @@ Before using the Azure AKS Pod Recommendations Extractor, ensure you have the fo
    ```
    python clusters_parser.py -c <cluster_name> -s <subscription_name> -p <policy_state>
    ```
-
-   - Use `-c` to specify a particular cluster or use `*` to select all clusters.
-   - Use `-s` to specify a particular subscription or use `*` to select all subscriptions.
-   - Use `-p` to filter by Azure policy state (Healthy/Unhealthy) or use `*` to include all policies.
+   
+   - Use `-c` or `--cluster`: Specify the name of the cluster to extract (use `*` for all clusters).
+   - Use `-s` or `--subscription`: Filter clusters by subscription (use `*` for all subscriptions).
+   - Use `-p` or `--policy`: Filter clusters by Azure Policy add-on state (Healthy/Unhealthy) (use `*` for all states).
 
 4. The tool will generate a CSV file containing the extracted data.
 
-## Example
+### Examples
 
-To extract data for a specific cluster named "MyCluster," use the following command:
+Extract recommendations data for a specific cluster:
 
+```bash
+python extractor.py -c YourClusterName
 ```
-python clusters_parser.py -c MyCluster
+
+Extract recommendations data for clusters within a specific subscription:
+
+```bash
+python extractor.py -s YourSubscriptionName
 ```
 
-## Exported Data
+Extract recommendations data for clusters with a specific Azure Policy add-on state:
 
-The tool exports data to a CSV file containing the following columns:
+```bash
+python extractor.py -p Healthy
+```
 
-- Cluster
+Extract recommendations data for all clusters:
+
+```bash
+python extractor.py -c "*" -s "*" -p "*"
+```
+
+## Output - Exported Data
+
+The tool generates a CSV file named with a timestamp, containing the following information:
+
+- Cluster name
 - Subscription
 - Resource Group
-- (Azure policy recommendations)
+- Azure AKS recommendations (with status: Healthy, Unhealthy, or N/A)
 
 ## License
 
-This tool is provided under the [MIT License](LICENSE) and is free to use, modify, and distribute.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Disclaimer
+## Acknowledgments
 
-This tool is not an official Microsoft product. Use it responsibly and ensure that you have the necessary permissions and approvals to access and modify Azure resources.
+This tool is created with ❤️ by Aviv Beniash.
