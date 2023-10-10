@@ -47,19 +47,19 @@ Before using the Azure AKS Clusters Recommendations Extractor, ensure you have t
 Extract recommendations data for a specific cluster:
 
 ```bash
-python clusters_parser.py -c _YourClusterName_
+python clusters_parser.py -c YourClusterName
 ```
 
 Extract recommendations data for clusters within a specific subscription:
 
 ```bash
-python clusters_parser.py -s _YourSubscriptionName_
+python clusters_parser.py -s YourSubscriptionName
 ```
 
 Extract recommendations data for clusters with a specific Azure Policy add-on state (Healthy/Unhealthy/N/A):
 
 ```bash
-python clusters_parser.py -p _Healthy_
+python clusters_parser.py -p Healthy
 ```
 
 Extract recommendations data for all clusters:
@@ -83,4 +83,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-This tool is created with ❤️ by Aviv Beniash.
+This tool is created with ❤️ by *Aviv Beniash*.
